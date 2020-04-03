@@ -6,6 +6,7 @@ const template = require('art-template');
 const moment = require('moment');
 const path = require('path');
 const url = require('url');
+const queryString = require('querystring');
 template.defaults.root = './';
 var userNum = 23;
 module.exports = {
@@ -31,7 +32,6 @@ module.exports = {
         });
         req.on('end', function () {
             // var obj = require('querystring').parse(d);
-            console.log(d);
             //连接数据库，并判断是否有重名
             const con = mysql.createConnection({
                 host: 'localhost',
@@ -73,7 +73,6 @@ module.exports = {
             let username = field.username;
             let jiaose = field.jiaose;
             let password = field.password;
-            console.log(username, jiaose, password);
             const con = mysql.createConnection({
                 host: 'localhost',
                 user: 'root',
@@ -95,7 +94,6 @@ module.exports = {
                         console.log(err);
                     } else {
                         userNum = parseInt(result[0].id) + 1;
-                        console.log(userNum);
                         var addSql = `INSERT INTO user(id,name,password,jiaose) VALUES('${userNum}','${username}','${password}','${jiaose}');`;
                         con.query(addSql,
                             (err, result, field) => {
@@ -287,9 +285,8 @@ module.exports = {
         }
     },
     vedio: (req, res) => {
-        let filename = url.parse(req.url,true).query.id;
-        console.log(filename);
-        var file = path.resolve(__dirname, "../../vedio/"+filename);
+        let filename = url.parse(req.url, true).query.id;
+        var file = path.resolve(__dirname, "../../vedio/" + filename);
         fs.stat(file, function (err, stats) {
             if (err) {
                 res.end(err);
@@ -313,7 +310,85 @@ module.exports = {
                     res.end(err);
                 });
         });
+
+    },
+    stat: (req, res) => {
+        if (req.method == 'POST') {
+            var d = '';
+            req.on('data', function (post_data) {
+                d += post_data;
+            });
+            req.on('end', function () {
+                let stat = queryString.parse(d);
+                const con = mysql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: '123456',
+                    database: 'web'
+                });
+                con.connect((err) => {
+                    if (err) {
+                        console.log('err');
+                    } else {
+                        console.log('数据库连接成功');
+                    }
+                });
+
+                var sql = `update user set status="${stat.path}" where name="${stat.stat_id}"`;
+                con.query(sql,
+                    (err, result, field) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            if (result[0]) {
+                                res.end('1');
+                            } else {
+                                res.end('0');
+                            }
+                        }
+                    });
+                con.end();
+                console.log('数据库连接断开')
+            });
+        }
+    },
+    begin: (req, res) => {
+        let d = '';
+        req.on('data', function (post_data) {
+            d += post_data;
+        });
+        console.log(d);
+        req.on('end', function () {
+            const con = mysql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: '123456',
+                database: 'web'
+            });
+            con.connect((err) => {
+                if (err) {
+                    console.log('err');
+                } else {
+                    console.log('数据库连接成功');
+                }
+            });
+            let sql = `select status from user  where name="${d}"`;
+            con.query(sql,
+                (err, result, field) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(result[0].status);
+                        res.end(result[0].status);
+                    }
+                });
+            con.end();
+            console.log('数据库连接断开')
+        });
     }
-};
+}
+
+
+
 
 

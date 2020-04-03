@@ -26,6 +26,12 @@ module.exports = {
             else if (urls.pathname === '/vedio'){
                 controller.vedio(req,res);
             }
+            else if (urls.pathname === '/status'){
+                controller.stat(req,res);
+            }
+            else if (urls.pathname === '/begin'){
+                controller.begin(req,res);
+            }
             else {
                 controller.other(req,res);
             }
