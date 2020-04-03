@@ -128,7 +128,7 @@ module.exports = {
                     console.log('数据库连接');
                 }
             });
-            var checkSql = `select name,password from user where name = "${username}"`;
+            var checkSql = `select name,password,jiaose from user where name = "${username}"`;
             con.query(checkSql,
                 (err,result,field)=>{
                     if (err){
@@ -137,18 +137,30 @@ module.exports = {
                         if (password == result[0].password){
                             console.log('验证正确');
                             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-
+                            console.log(result[0]);
                             var userInfo = {
-                                name:username
+                                name:username,
+                                jiaose:result[0].jiaose
                             };
-                            // res.end('<script>alert("登录成功！");location.href="Learn/student_index.html"</script>');
-                            var htmls = template('Learn/student_index.html',
-                                {data:userInfo});
-                            console.log(userInfo);
-                            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-                            res.write('<script>alert("登录成功")</script>');
-                            res.end(htmls);
-                            con.end();
+                            // res.end('<script>alert("登录成功！");location.href="Learn/.html"</script>');
+                            if (userInfo.jiaose === 'teacher'){
+                                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                                res.write('<script>alert("登录成功")</script>');
+                                fs.readFile('./Learn/teacher_index.html','utf8',(err,data)=>{
+                                    if (!err){
+                                        res.end(data);
+                                        con.end();
+                                    }
+                                });
+                            }else {
+                                var htmls = template('Learn/student_index.html',
+                                    {data:userInfo});
+                                console.log(userInfo);
+                                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                                res.write('<script>alert("登录成功")</script>');
+                                res.end(htmls);
+                                con.end();
+                            }
                         }
                         else {
                             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
