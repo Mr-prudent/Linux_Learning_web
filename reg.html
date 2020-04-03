@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="shortcut icon" href="./image/favicon.ico" />
+    <link rel="stylesheet" href="css/reg.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>欢迎来到Linux学习网站</h2>
+    </div>
+    <form id="form" class="form" action="/addUser" method="post" enctype="multipart/form-data">
+        <div class="form-control">
+            <label for="username">用户名</label>
+            <input type="text" placeholder="用户名" id="username" name="username" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="username">角色</label>
+            <br>
+            <div class="input" id="jiaose">
+                <label><input class="radio1" type="radio" name="jiaose" value="student">
+                    <span></span>
+                    学生
+                </label>
+                <label><input class="radio2" type="radio" name="jiaose" value="teacher">
+                    <span></span>
+                    教师
+                </label>
+            </div>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="username">密码</label>
+            <input type="password" placeholder="密码" id="password" name="password"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="username">确认密码</label>
+            <input type="password" placeholder="确认密码" id="password2"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+        </div>
+        <button id="btn" >提交</button>
+    </form>
+</div>
+</body>
+<script src="js/reg.js"></script>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生首页</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-ui-datepicker.min.js"></script>
+    <link rel="stylesheet" href="../css/calendar.css">
+    <link rel="shortcut icon" href="./image/favicon.ico" />
+    <link rel="stylesheet" href="../font_index/iconfont.css">
+    <link rel="stylesheet" href="../css/student_index.css">
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="wrap">
+            <span><i class="iconfont icon-ts-tubiao_linux"></i></span>
+            <h3>Linux在线学习平台</h3>
+        </div>
+    </div>
+</header>
+    <div class="op_list clearfloat" >
+        <div class="wrap clearfloat">
+            <div class="option_list clearfloat">
+                <ul>
+                    <li><a href="#" id="index">首页</a>
+                        <div class="tab_line"></div>
+                    </li>
+                    <li><a href="#" id="learning_start">课程学习</a></li>
+                    <li><a href="#" id="download">资源下载</a></li>
+                    <li><a href="#" id="message">消息查看</a></li>
+                    <li><a href="#">在线考试</a></li>
+                </ul>
+                <span>你好，{{data.name}}用户</span>
+            </div>
+    </div>
+    </div>
+    <div class="learning">
+            <div class="wrap">
+                <div class="learning_box">
+                        <h3>课程学习</h3>
+                </div>
+            </div>
+        </div>
+    <div class="news_list">
+        <div class="wrap">
+                <div class="news_top">
+                    <span>最新消息</span>
+                </div>
+                <div class="news_show">
+                    <ul>
+<!--                        <li>-->
+<!--                            <span>2020/3/16 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老师：请各位同学认真做好课前预习工作。</span>-->
+<!--                        </li>-->
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <div class="files_list">
+        <div class="wrap">
+            <div class="new_files">
+                <div class="new_files_top">
+                    <span>最新资源</span>
+                </div>
+                <div class="file_row clearfloat">
+                    <ul class="file_list clearfloat">
+                        <li class="file_list_th clearfloat">
+                            <div class="col">文件</div>
+                            <div class="col">大小</div>
+                            <div class="col">修改时间</div>
+                        </li>
+                        <li class="file_list_th clearfloat">
+                            <div>a.txt</div>
+                            <div>32 KB</div>
+                            <div>2020-03-28 15:51:53</div>
+                        </li>
+                        <li class="file_list_th clearfloat">
+                            <div>a.txt</div>
+                            <div>32 KB</div>
+                            <div>2020-03-28 15:51:53</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <div class="download">
+        <div class="wrap">
+            <div class="download_box">
+                <div class="file_row clearfloat">
+                    <ul class="file_list clearfloat">
+                        <li class="file_list_th clearfloat">
+                            <div class="col">文件</div>
+                            <div class="col">大小</div>
+                            <div class="col">修改时间</div>
+                            <div class="col">创建时间</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="message clearfloat">
+        <div class="wrap clearfloat">
+            <div class="message_box clearfloat" id="mes">
+                <ul class="message_list clearfloat">
+                    <li class="message_row clearfloat" >
+                        <div>
+                            <h4><a href="">第一周作业</a></h4>
+                            <p>发布时间：2020-03-28 15:51:53</p>
+                            <p>发送作者：Wang</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<script src="../js/message.js"></script>
+<script>
+    $('#calendar').datepicker({
+        inline: true,
+        firstDay: 1,
+        showOtherMonths: true,
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    });
+    $('#learning_start').click(function () {
+        $('.news_list').fadeOut(350);
+        $('.files_list').fadeOut(350);
+        $('.download').fadeOut(350);
+        $('.message').fadeOut(350);
+        setTimeout(function () {
+            $('.learning').fadeIn(350);
+        },400);
+        $('#download').unbind('mouseenter').unbind('mouseleave');
+        $('#message').unbind('mouseenter').unbind('mouseleave');
+        $('#index').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').unbind('mouseenter').unbind('mouseleave');
+        $('#index').hover(function () {
+            $('.tab_line').css({left:'27px'});
+        },function () {
+            $('.tab_line').css({left:'134px'});
+        });
+        $('#download').hover(function () {
+            $('.tab_line').css({left:'240px'});
+        },function () {
+            $('.tab_line').css({left:'134px'});
+        });
+        $('#message').hover(function () {
+            $('.tab_line').css({left:'346px'});
+        },function () {
+            $('.tab_line').css({left:'134px'});
+        });
+
+    });
+    $('#learning_start').hover(function () {
+        $('.tab_line').css({left:'134px'});
+    },function () {
+        $('.tab_line').css({left:'27px'});
+    });
+    $('#index').click(function () {
+        $('.learning').fadeOut(350);
+        $('.download').fadeOut(350);
+        $('.message').fadeOut(350);
+        setTimeout(function () {
+            $('.news_list').fadeIn(350);
+            $('.files_list').fadeIn(350);
+        },400);
+        $('#download').unbind('mouseenter').unbind('mouseleave');
+        $('#message').unbind('mouseenter').unbind('mouseleave');
+        $('#index').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').hover(function () {
+            $('.tab_line').css({left:'134px'});
+        },function () {
+            $('.tab_line').css({left:'27px'});
+        });
+        $('#download').hover(function () {
+            $('.tab_line').css({left:'240px'});
+        },function () {
+            $('.tab_line').css({left:'27px'});
+        });
+        $('#message').hover(function () {
+            $('.tab_line').css({left:'346px'});
+        },function () {
+            $('.tab_line').css({left:'27px'});
+        });
+        $.get('http://127.0.0.1:8080/file',function (file_data) {
+            $('.files_list .wrap .new_files .file_row .file_list').empty();
+            $('.files_list .wrap .new_files .file_row .file_list').append(`<li class="file_list_th clearfloat"><div class="col">文件</div><div class="col">大小</div><div class="col">修改时间</div></li>`);
+            let file_arr = JSON.parse(file_data);
+            for(let i=0;i<7;i++){
+                if (file_arr[i].size!='-'){
+                    $('.files_list .wrap .new_files .file_row .file_list').append(`<li class="file_list_th clearfloat"><div>${file_arr[i].name}</div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div></li>`);
+                }
+            }
+        });
+    });
+    $('#index').hover(function () {
+        $('.tab_line').css({left:'27px'});
+    },function () {
+        $('.tab_line').css({left:'27px'});
+    });
+    $('#download,#file_dir_back').live('click',function () {
+        $.get('http://127.0.0.1:8080/file',function (file_data) {
+            $('.download .file_list').empty();
+            $('.download .file_list').append('<li class="file_list_th clearfloat"><div class="col">文件</div><div class="col">大小</div><div class="col">修改时间</div><div class="col">创建时间</div></li>');
+            var file_arr = JSON.parse(file_data);
+            for (let i=0;i<file_arr.length;i++){
+                if (file_arr[i].size != '-'){
+                    $('.download .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color"> <a href="/download/${file_arr[i].name}" download="${file_arr[i].name}">${file_arr[i].name}</a></div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+                }else {
+                    $('.download .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color file_dir">${file_arr[i].name}</div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+                }
+            }
+            $('.file_dir').click(function () {
+                var dir = this.innerHTML;
+                $.post('http://127.0.0.1:8080/file',this.innerHTML,function (file_data) {
+                    $('.download .file_list').empty();
+                    $('.download .file_list').append('<li class="file_list_th clearfloat"><div class="col">文件</div><div class="col">大小</div><div class="col">修改时间</div><div class="col">创建时间</div></li>');
+                    $('.download .file_list').append(`<li class="file_list_item clearfloat"><div><a id="file_dir_back" style="color: black;text-decoration: none" href="#">返回</a></div></li>`);
+                    var file_arr = JSON.parse(file_data);
+                    for (let i=0;i<file_arr.length;i++){
+                        if (file_arr[i].size != '-'){
+                            $('.download .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color"> <a href="/download/${dir}/${file_arr[i].name}" download="${file_arr[i].name}">${file_arr[i].name}</a></div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+                        }
+                    }
+                })
+            });
+        });
+        $('.news_list').fadeOut(350);
+        $('.files_list').fadeOut(350);
+        $('.learning').fadeOut(350);
+        $('.message').fadeOut(350);
+        setTimeout(function () {
+            $('.download').fadeIn(350);
+        },400);
+        $('#download').unbind('mouseenter').unbind('mouseleave');
+        $('#message').unbind('mouseenter').unbind('mouseleave');
+        $('#index').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').hover(function () {
+            $('.tab_line').css({left:'134px'});
+        },function () {
+            $('.tab_line').css({left:'240px'});
+        });
+        $('#index').hover(function () {
+            $('.tab_line').css({left:'27px'});
+        },function () {
+            $('.tab_line').css({left:'240px'});
+        });
+        $('#message').hover(function () {
+            $('.tab_line').css({left:'346px'});
+        },function () {
+            $('.tab_line').css({left:'240px'});
+        });
+    });
+    $('#download').hover(function () {
+        $('.tab_line').css({left:'240px'});
+    },function () {
+        $('.tab_line').css({left:'27px'});
+    });
+    $('#message,#back').live('click',function () {
+        $('.news_list').fadeOut(350);
+        $('.files_list').fadeOut(350);
+        $('.learning').fadeOut(350);
+        $('.download').fadeOut(350);
+        setTimeout(function () {
+            $('.message').fadeIn(350);
+        },400);
+        $('#download').unbind('mouseenter').unbind('mouseleave');
+        $('#message').unbind('mouseenter').unbind('mouseleave');
+        $('#index').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').unbind('mouseenter').unbind('mouseleave');
+        $('#learning_start').hover(function () {
+            $('.tab_line').css({left:'134px'});
+        },function () {
+            $('.tab_line').css({left:'346px'});
+        });
+        $('#index').hover(function () {
+            $('.tab_line').css({left:'27px'});
+        },function () {
+            $('.tab_line').css({left:'346px'});
+        });
+        $('#download').hover(function () {
+            $('.tab_line').css({left:'240px'});
+        },function () {
+            $('.tab_line').css({left:'346px'});
+        });
+        $.get('http://127.0.0.1:8080/message',function (message_data) {
+            let message_json = JSON.parse(message_data);
+            // $('.message_list').fadeOut();
+            $('.message_list').empty();
+            for (let i=0;i<message_json.length;i++){
+                $('.message_list').append(`<li class="message_row clearfloat"><div><h4><a>${message_json[i].title}</a></h4><p>发送时间：${message_json[i].add_date}</p><p>发送作者：${message_json[i].teacher_name}</p><p class="hide">内容：${message_json[i].content}</p><div class="hide" id="back">返回</div></div></li>`);
+            }
+        });
+    });
+    $('#message').hover(function () {
+        $('.tab_line').css({left:'346px'});
+    },function () {
+        $('.tab_line').css({left:'27px'});
+    });
+    $('.message_row h4').live('click',function () {
+        $('.message_row h4').parent().css('display','none');
+        $(this).parent().css('display','block');
+        // $(this).parent().slideDown();
+       //  let t2 = $(this);
+       //  let t = $(this).parent()[0];
+       // $('.message_row h4').parent().each(function () {
+       //     if (this != t){
+       //         $(this).fadeOut(350);
+       //     }else {
+       //         setTimeout(function () {
+       //             console.log(t);
+       //             $(t).css({
+       //                 'width':'530px',
+       //                 'height':'300px',
+       //                 'margin-left':'100px'
+       //             });
+       //             t2.nextAll().removeClass('hide');
+       //         },400);
+       //
+       //     }
+       // });
+        $(this).parent().css({
+            'width':'530px',
+            'height':'300px',
+            'margin-left':'100px',
+            'margin-top':'50px'
+        });
+
+        $(this).nextAll().removeClass('hide');
+    })
+</script>
+</body>
+</html>

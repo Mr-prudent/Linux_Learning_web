@@ -1,0 +1,270 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearfloat{zoom:1}
+.wrap{
+    width: 980px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+ul{
+    list-style: none;
+}
+.hide{
+    display: none;
+}
+.header{
+    width: 100%;
+    height: 80px;
+    background: #4e58a0;
+}
+.header h3{
+    color: white;
+    line-height: 80px;
+    padding-left: 80px;
+    display: inline-block;
+    position: relative;
+}
+.header span i{
+    display: inline-block;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+}
+.op_list{
+    width: 100%;
+    height: 40px;
+    background: #30336b;
+}
+.option_list{
+    position: relative;
+}
+.option_list ul{
+    list-style: none;
+}
+.option_list ul li{
+    height: 40px;
+    float: left;
+    padding: 0 18px;
+    line-height: 40px;
+    color: white;
+    font-size: 14px;
+    width: 70px;
+    text-align: center;
+    border: 2px black;
+}
+.option_list ul li a{
+    text-decoration: none;
+    color: white;
+}
+.option_list ul li a:hover {
+    /*font-size: 16px;*/
+    color:rgb(212,228,199 );
+}
+.option_list span{
+    float: right;
+    line-height: 40px;
+    color: white;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.news_list .wrap{
+    height: 100px;
+    background: #eeeeee;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.news_list .wrap .news_top{
+    height: 35px;
+    background: #eeeeee;
+    border-bottom: solid 2px #30336b;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.news_list .wrap .news_top span{
+    line-height: 35px;
+    margin-left: 30px;
+    font-size: 14px;
+    color: #30336b;
+}
+.news_list .wrap .news_show ul {
+    list-style: none;
+    margin-left: 30px;
+    font-size: 14px;
+}
+.news_list .wrap .news_show ul li{
+    height: 30px;
+    line-height: 30px;
+}
+.files_list .wrap{
+    position: relative;
+    border-radius: 10px;
+}
+.files_list .wrap .new_files{
+    width: 650px;
+    background: #eeeeee;
+    height: 275px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.learning .wrap {
+    height: 500px;
+    background: #eeeeee;
+    margin-top: 10px;
+}
+.learning,.download,.message{
+    display: none;
+}
+.download_box{
+    overflow: auto;
+}
+.download .wrap {
+    height: 500px;
+    background: #eeeeee;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.message .wrap {
+    height: 500px;
+    background: #eeeeee;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.file_row{
+    width: 900px;
+    height: 460px;
+    padding-top: 10px;
+    margin: 0px auto;
+}
+.file_row ul{
+    list-style: none;
+    padding-left: 20px;
+}
+.file_row ul li div{
+    float: left;
+    width: 150px;
+    height: 18px;
+    margin: 5px 10px;
+    font-size: 14px;
+    line-height: 18px;
+    text-indent: 10px;
+}
+.file_row ul li div:nth-child(3),.file_row ul li div:nth-child(4){
+     width: 200px;
+ }
+.file_row .file_list_item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 740px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: white;
+    transition: all 0.3s ease;
+}
+.file_row .file_list_item:hover{
+    background: rgb(235,235,235);
+ }
+.file_row .file_list_th{
+    margin-bottom: 10px;
+}
+.file_color a{
+    text-decoration: none;
+    color: black;
+}
+.file_color:hover a{
+    color: #30336b;
+}
+.file_color{
+    cursor: pointer;
+}
+.tab_line{
+    width: 50px;
+    height: 3px;
+    background: white;
+    position: absolute;
+    bottom: 4px;
+    left: 27px;
+    border-radius: 2px;
+    transition: all 1.2s ease;
+}
+.message_list{
+    padding-top: 20px;
+    margin-left: 100px;
+}
+.message_list li{
+    float: left;
+}
+.message_row div{
+    width: 250px;
+    height: 150px;
+    background: white;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: 0.3s all ease;
+    border: 1px solid white;
+}
+.message_row div:hover{
+    background: #eeeeee;
+
+}
+.message_row div p{
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+.message_row div h4{
+    padding-left: 20px;
+    padding-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.message_row div h4 a{
+    text-decoration: none;
+    color: #262626;
+}
+.message_row div h4 a:hover{
+    color: #30336b;
+}
+.message_box{
+    overflow: auto;
+    width: 980px;
+    height: 500px;
+}
+#back{
+    width: 50px;
+    height: 30px;
+    background: #30336b;
+    font-size: 14px;
+    color: white;
+    line-height: 26px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 80px;
+    cursor: pointer;
+}
+.files_list .new_files_top span{
+    line-height: 35px;
+    margin-left: 30px;
+    font-size: 14px;
+    color: #30336b;
+}
+.files_list .new_files_top{
+    height: 35px;
+    background: #eeeeee;
+    border-bottom: solid 2px #30336b;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+
+

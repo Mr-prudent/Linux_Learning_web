@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="shortcut icon" href="./image/favicon.ico" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="font_index/iconfont.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="imgBox">
+        <img src="./image/login-img.png" alt="#">
+    </div>
+    <div class="loginBox">
+        <h3>欢迎来到Linux学习平台，请登录</h3>
+        <form action="/login" method="post" enctype="multipart/form-data" id="form">
+            <div class="inputBox">
+                <span><i class="iconfont icon-denglu"></i></span>
+                <input type="text" name="username" placeholder="请输入用户名">
+            </div>
+            <div class="inputBox">
+                <span><i class="iconfont icon-mima"></i></span>
+                <input type="password" name="password" placeholder="请输入密码">
+            </div>
+                <input type="submit"  value="登录" id="login">
+                <a href="./reg.html">注册</a>
+        </form>
+    </div>
+</div>
+<script>
+        var form = document.getElementById('form');
+        form.addEventListener('submit',e=>{
+            e.preventDefault();
+            let username = form.username.value.trim();
+            let password = form.password.value.trim();
+            if(username == ''||password == ''){
+               alert('请输入用户和密码！');
+            }else {
+                form.submit();
+            }
+        });
+</script>
+</body>
+</html>
