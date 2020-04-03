@@ -114,6 +114,7 @@ ul{
     height: 500px;
     background: #eeeeee;
     margin-top: 10px;
+    overflow: hidden;
 }
 .learning,.download,.message{
     display: none;
@@ -263,6 +264,67 @@ ul{
     border-bottom: solid 2px #30336b;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+.v_list{
+    display: none;
+}
+.learning_box{
+    width: 250px;
+    height: 450px;
+    background: white;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    overflow: auto;
+    float: left;
+}
+.learning_box ul{
+    padding-top: 10px;
+}
+.learning_box ul li {
+    font-size: 14px;
+    line-height: 25px;
+    padding-left: 45px;
+    cursor: pointer;
+}
+.learning_box ul li:hover{
+    color: #30336b;
+}
+.learning_box a{
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+.learning_box a i{
+    font-size: 14px;
+    position: absolute;
+    top: 3px;
+}
+.learning_box a:hover{
+    color: #30336b;
+}
+.learning_box .chapter{
+    margin-top: 10px;
+}
+.learning .watch{
+    width: 620px;
+    height: 450px;
+    background: white;
+    float: left;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding-top: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+.learning .watch video{
+    outline: none;
+    border-radius: 10px;
+    position: absolute;
+    top: 5px;
 }
 
 
