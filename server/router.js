@@ -23,10 +23,14 @@ module.exports = {
             else if (urls.pathname === '/message'){
                 controller.message(req,res);
             }
+            else if (urls.pathname === '/vedio'){
+                controller.vedio(req,res);
+            }
             else {
                 controller.other(req,res);
             }
         });
     }
+
 };
 

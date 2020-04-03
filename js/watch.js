@@ -16,6 +16,7 @@ $('.chapter .v_list li').click(function () {
         $('.learning .watch').empty();
         resolve();
     }).then(()=>{
-        $('.learning .watch').append(`<video id="player" width="620" height="452" controls><source src="../vedio/${path}" type="video/mp4"></video>`);
+        $('.learning .watch').append(`<video id="player" width="620" height="452" controls><source src="/vedio?id=${path}" type="video/mp4"></video>`);
+        document.getElementById('player').volume = 0.3;
     })
 });
