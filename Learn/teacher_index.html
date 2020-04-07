@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>教师首页</title>
-    <link rel="stylesheet" href="../font_index/iconfont.css">
-    <link rel="shortcut icon" href="./image/favicon.ico" />
-    <script src="../js/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/teacher_index.css">
+  <meta charset="UTF-8">
+  <title>教师首页</title>
+  <link rel="stylesheet" href="../font_index/iconfont.css">
+  <link rel="shortcut icon" href="./image/favicon.ico" />
+  <script src="../js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../css/teacher_index.css">
 </head>
 <body>
 <header>
-    <div class="header">
-        <div class="wrap">
-            <span><i class="iconfont icon-ts-tubiao_linux"></i></span>
-            <h3>Linux在线学习平台</h3>
-        </div>
+  <div class="header">
+    <div class="wrap">
+      <span><i class="iconfont icon-ts-tubiao_linux"></i></span>
+      <h3>Linux在线学习平台</h3>
     </div>
+  </div>
 </header>
-
+<div class="left_list">
+  <a class="title">资源管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
+  <div class="option_list">
+    <a class="option">资源查看 </a>
+    <a class="option">资源上传 </a>
+  </div>
+  <ul>
+    <li></li>
+  </ul>
+  <a class="title">通知管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
+  <a></a>
+  <ul>
+    <li></li>
+  </ul>
+  <a class="title">试卷管理</a>
+  <ul>
+    <li></li>
+  </ul>
+</div>
 </body>
+
+<script>
+  $('.left_list .title').click(function () {
+      $(this).next().slideToggle();
+    if ($(this).children('.iconfont').hasClass('icon-youjiantou')){
+      $(this).children('.iconfont').removeClass('icon-youjiantou').addClass('icon-jiantou8');
+    }else {
+      $(this).children('.iconfont').removeClass('icon-jiantou8').addClass('icon-youjiantou');
+    }
+  });
+</script>
 </html>

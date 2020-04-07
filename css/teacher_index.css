@@ -1,35 +1,82 @@
 *{
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 .clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
 .clearfloat{zoom:1}
 .wrap{
-    width: 980px;
-    margin: 0 auto;
-    border-radius: 10px;
+  width: 980px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 ul{
-    list-style: none;
+  list-style: none;
 }
 .hide{
-    display: none;
+  display: none;
 }
 .header{
-    width: 100%;
-    height: 80px;
-    background: #4e58a0;
+  width: 100%;
+  height: 80px;
+  /*background: #4e58a0;*/
+  background: #30336b;
 }
 .header h3{
-    color: white;
-    line-height: 80px;
-    padding-left: 80px;
-    display: inline-block;
-    position: relative;
+  color: white;
+  line-height: 80px;
+  padding-left: 80px;
+  display: inline-block;
+  position: relative;
 }
 .header span i{
-    display: inline-block;
-    font-size: 30px;
-    position: absolute;
-    top: 25px;
+  display: inline-block;
+  font-size: 30px;
+  position: absolute;
+  top: 25px;
+}
+.left_list {
+  width: 200px;
+  height: 550px;
+  background: #272C33;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 10px;
+}
+.left_list a{
+  transition: 0.5s ease all ;
+}
+.left_list a:hover{
+  color: white;
+}
+/*#C8C9CE    a #9496A1  39,44,51*/
+.left_list .title{
+  display: block;
+  text-decoration: none;
+  color: #9496A1;
+  font-size: 15px;
+  width: 150px;
+  margin: 0 25px;
+  text-align: left;
+  line-height: 50px;
+  position: relative;
+  cursor: pointer;
+}
+.left_list .option{
+  display: block;
+  text-decoration: none;
+  color: #9496A1;
+  font-size: 14px;
+  width: 150px;
+  margin: 0 25px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+.left_list .title i{
+  font-size: 14px;
+  position: absolute;
+  top: 2px;
+}
+.option_list{
+  display: none;
 }
