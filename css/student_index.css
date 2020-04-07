@@ -119,8 +119,9 @@ ul{
 .learning,.download,.message{
     display: none;
 }
-.download_box{
+.download .wrap .download_box{
     overflow: auto;
+    height: 464px;
 }
 .download .wrap {
     height: 500px;
