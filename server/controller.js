@@ -137,25 +137,29 @@ module.exports = {
               if (password == result[0].password) {
                 console.log('验证正确');
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-                console.log(result[0]);
                 var userInfo = {
                   name: username,
                   jiaose: result[0].jiaose
                 };
                 // res.end('<script>alert("登录成功！");location.href="Learn/.html"</script>');
                 if (userInfo.jiaose === 'teacher') {
+                  // res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                  // res.write('<script>alert("登录成功")</script>');
+                  // fs.readFile('./Learn/teacher_index.html', 'utf8', (err, data) => {
+                  //   if (!err) {
+                  //     res.end(data);
+                  //     con.end();
+                  //   }
+                  // });
+                  var htmls = template('Learn/teacher_index.html',
+                      {data: userInfo});
                   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
                   res.write('<script>alert("登录成功")</script>');
-                  fs.readFile('./Learn/teacher_index.html', 'utf8', (err, data) => {
-                    if (!err) {
-                      res.end(data);
-                      con.end();
-                    }
-                  });
+                  res.end(htmls);
+                  con.end();
                 } else {
                   var htmls = template('Learn/student_index.html',
                       {data: userInfo});
-                  console.log(userInfo);
                   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
                   res.write('<script>alert("登录成功")</script>');
                   res.end(htmls);

@@ -7,6 +7,8 @@
   <link rel="shortcut icon" href="./image/favicon.ico" />
   <script src="../js/jquery.min.js"></script>
   <link rel="stylesheet" href="../css/teacher_index.css">
+  <link rel="stylesheet" href="../css/calendar.css">
+  <script src="../js/jquery-ui-datepicker.min.js"></script>
 </head>
 <body>
 <header>
@@ -17,28 +19,80 @@
     </div>
   </div>
 </header>
-<div class="left_list">
-  <a class="title">资源管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
-  <div class="option_list">
-    <a class="option">资源查看 </a>
-    <a class="option">资源上传 </a>
+<div id="over_hide">
+  <div class="left_list clearfloat">
+    <h3 id="index_content">教师管理菜单</h3>
+    <a class="title">资源管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
+    <div class="option_list">
+      <a class="option" id="file_check"><i class="iconfont icon-chakan"></i>&nbsp;&nbsp;&nbsp;&nbsp;资源查看 </a>
+      <a class="option" id="file_up"><i class="iconfont icon-shangchuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;资源上传</a>
+    </div>
+    <ul>
+      <li></li>
+    </ul>
+    <a class="title">通知管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
+    <div class="option_list">
+      <a class="option" id="msg_check"><i class="iconfont icon-tongzhi"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知查看 </a>
+      <a class="option" id="msg_up"><i class="iconfont icon-shangchuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知发布 </a>
+    </div>
+    <a class="title">试卷管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
+    <div class="option_list">
+      <a class="option" id="paper_check"><i class="iconfont icon-shijuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;题库修改 </a>
+      <a class="option" id="paper_point"><i class="iconfont icon-tianjiashijuan-"></i>&nbsp;&nbsp;&nbsp;&nbsp;试卷批改 </a>
+      <a class="option" id="paper_publish"><i class="iconfont icon-shangchuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;发布试卷 </a>
+    </div>
   </div>
-  <ul>
-    <li></li>
-  </ul>
-  <a class="title">通知管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
-  <a></a>
-  <ul>
-    <li></li>
-  </ul>
-  <a class="title">试卷管理</a>
-  <ul>
-    <li></li>
-  </ul>
+  <div class="index_content content clearfloat">
+    <h3>欢迎&nbsp;&nbsp;{{data.name}}&nbsp;&nbsp;老师访问Linux在线学习管理平台</h3>
+    <div class="index_show clearfloat">
+      <div class="tap">
+        <p>快捷入口：</p>
+        <ul class="fast_list">
+          <li id="msg_check_fast">通知查看</li>
+          <li id="msg_up_fast">通知发布</li>
+          <li id="paper_publish_fast">发布试卷</li>
+          <li id="file_up_fast">资源上传</li>
+          <li id="paper_point_fast">批改试卷</li>
+          <li id="paper_check_fast">题库修改</li>
+        </ul>
+      </div>
+      <div id="calendar"></div>
+    </div>
+
+  </div>
+  <div class="file_check_content content">
+    <h2>资源查看</h2>
+  </div>
+  <div class="file_up_content content">
+    <h2>资源上传</h2>
+  </div>
+  <div class="msg_check_content content">
+    <h2>通知查看</h2>
+  </div>
+  <div class="msg_up_content content">
+    <h2>通知发布</h2>
+  </div>
+  <div class="paper_check_content content">
+    <h2>题库修改</h2>
+  </div>
+  <div class="paper_point_content content">
+    <h2>试卷批改</h2>
+  </div>
+  <div class="paper_publish_content content">
+    <h2>发布试卷</h2>
+  </div>
 </div>
+
 </body>
 
 <script>
+  $('#calendar').datepicker({
+    inline: true,
+    firstDay: 1,
+    showOtherMonths: true,
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  });
+  let page = '.index_content';
   $('.left_list .title').click(function () {
       $(this).next().slideToggle();
     if ($(this).children('.iconfont').hasClass('icon-youjiantou')){
@@ -46,6 +100,94 @@
     }else {
       $(this).children('.iconfont').removeClass('icon-jiantou8').addClass('icon-youjiantou');
     }
+  });
+  $('#file_check').click(function () {
+      new Promise(resolve => {
+        $(page).fadeOut(350);
+        setTimeout(function () {
+          resolve();
+        },400);
+      }).then(()=>{
+        page = '.file_check_content';
+        $(page).fadeIn(350);
+      })
+  });
+  $('#file_up,#file_up_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.file_up_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#msg_check,#msg_check_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.msg_check_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#msg_up,#msg_up_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.msg_up_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#paper_check,#paper_check_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.paper_check_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#paper_point,#paper_point_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.paper_point_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#paper_publish,#paper_publish_fast').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.paper_publish_content';
+      $(page).fadeIn(350);
+    })
+  });
+  $('#index_content').click(function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.index_content';
+      $(page).fadeIn(350);
+    })
   });
 </script>
 </html>
