@@ -103,6 +103,9 @@ ul{
 .file_check_content,.file_up_content,.msg_check_content,.msg_up_content,.paper_check_content,.paper_point_content,.paper_publish_content{
   display: none;
 }
+.file_check_content{
+  overflow-y: auto;
+}
 .index_content h3{
   font-weight: normal;
   display: block;
@@ -117,7 +120,6 @@ ul{
 }
 .index_content .icon-wenjian{
   display: block;
-
 }
 .index_show{
   width: 950px;
@@ -168,4 +170,21 @@ ul{
 #calendar{
   position: absolute;
   margin-top: -5px;
+  margin-right: 20px;
+}
+.download_box{
+  margin-top: 20px;
+  margin-left: 50px;
+}
+#file_hide{
+  display: none;
+}
+#dropz{
+  width: 500px;
+  height: 250px;
+  background: #eeeeee;
+  border: 2px dashed #30336b;
+  margin: 130px auto;
+  border-radius: 10px;
+  padding-top: 50px;
 }

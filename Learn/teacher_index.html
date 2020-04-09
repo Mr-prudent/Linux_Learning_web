@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="../css/teacher_index.css">
   <link rel="stylesheet" href="../css/calendar.css">
   <script src="../js/jquery-ui-datepicker.min.js"></script>
+  <link rel="stylesheet" href="../css/student_index.css">
+  <link rel="stylesheet" href="../css/dropzone.css">
+  <link rel="stylesheet" href="../css/basic.css">
+  <script src="../js/dropzone.min.js"></script>
 </head>
 <body>
 <header>
@@ -61,10 +65,22 @@
 
   </div>
   <div class="file_check_content content">
-    <h2>资源查看</h2>
+    <div class="download_box">
+      <div class="file_row clearfloat">
+        <ul class="file_list clearfloat">
+          <li class="file_list_th clearfloat">
+            <div class="col">文件</div>
+            <div class="col">大小</div>
+            <div class="col">修改时间</div>
+            <div class="col">创建时间</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   </div>
   <div class="file_up_content content">
-    <h2>资源上传</h2>
+    <form action="http://127.0.0.1:8080/upload" class="dropzone" id="dropz"></form>
   </div>
   <div class="msg_check_content content">
     <h2>通知查看</h2>
@@ -81,7 +97,6 @@
   <div class="paper_publish_content content">
     <h2>发布试卷</h2>
   </div>
-</div>
 
 </body>
 
@@ -101,16 +116,43 @@
       $(this).children('.iconfont').removeClass('icon-jiantou8').addClass('icon-youjiantou');
     }
   });
-  $('#file_check').click(function () {
-      new Promise(resolve => {
-        $(page).fadeOut(350);
-        setTimeout(function () {
-          resolve();
-        },400);
-      }).then(()=>{
-        page = '.file_check_content';
-        $(page).fadeIn(350);
-      })
+  $('#file_check,#file_dir_back').live('click',function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.file_check_content';
+      $(page).fadeIn(350);
+    }).then(()=>{
+      $.get('http://127.0.0.1:8080/file',function (file_data) {
+        $('.download_box .file_list').empty();
+        $('.download_box .file_list').append('<li class="file_list_th clearfloat"><div class="col">文件</div><div class="col">大小</div><div class="col">修改时间</div><div class="col">创建时间</div></li>');
+        let file_arr = JSON.parse(file_data);
+        for (let i=0;i<file_arr.length;i++){
+          if (file_arr[i].size != '-'){
+            $('.download_box .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color"> <a href="/download/${file_arr[i].name}" download="${file_arr[i].name}">${file_arr[i].name}</a></div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+          }else {
+            $('.download_box .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color file_dir">${file_arr[i].name}</div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+          }
+        }
+        $('.file_dir').click(function () {
+          var dir = this.innerHTML;
+          $.post('http://127.0.0.1:8080/file',this.innerHTML,function (file_data) {
+            $('.download_box .file_list').empty();
+            $('.download_box .file_list').append('<li class="file_list_th clearfloat"><div class="col">文件</div><div class="col">大小</div><div class="col">修改时间</div><div class="col">创建时间</div></li>');
+            $('.download_box .file_list').append(`<li class="file_list_item clearfloat"><div><a id="file_dir_back" style="color: black;text-decoration: none" href="#">返回</a></div></li>`);
+            var file_arr = JSON.parse(file_data);
+            for (let i=0;i<file_arr.length;i++){
+              if (file_arr[i].size != '-'){
+                $('.download_box .file_list').append(`<li class="file_list_item clearfloat"><div class="file_color"> <a href="/download/${dir}/${file_arr[i].name}" download="${file_arr[i].name}">${file_arr[i].name}</a></div><div>${file_arr[i].size}</div><div>${file_arr[i].mtime}</div><div>${file_arr[i].ctime}</div></li>`);
+              }
+            }
+          })
+        });
+      });
+    })
   });
   $('#file_up,#file_up_fast').click(function () {
     new Promise(resolve => {
@@ -189,5 +231,16 @@
       $(page).fadeIn(350);
     })
   });
+
+</script>
+<script>
+  Dropzone.options.dropz = {
+    paramName: "file", // The name that will be used to transfer the file
+    dictDefaultMessage: '拖动文件至此或者点击上传',
+    dictResponseError: '文件上传失败!',
+    dictFallbackMessage: "浏览器不受支持",
+    dictRemoveLinks: "删除",
+    dictCancelUpload: "取消",
+  };
 </script>
 </html>

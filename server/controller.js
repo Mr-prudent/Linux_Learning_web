@@ -389,8 +389,23 @@ module.exports = {
       con.end();
       console.log('数据库连接断开')
     });
+  },
+  upload: (req,res)=>{
+    let form = new formidable.IncomingForm();
+    //设置文件上传存放地址
+    form.uploadDir = "./download";
+    form.parse(req, function(err, fields, files) {
+      let oldpath = './'+files.file.path;
+      let newpath = './download/'+files.file.name;
+      fs.rename(oldpath,newpath,function (err) {
+        if(err){
+          throw  Error("改名失败");
+        }
+      });
+      res.end();
+    });
   }
-}
+};
 
 
 

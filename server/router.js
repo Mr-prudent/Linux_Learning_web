@@ -32,6 +32,9 @@ module.exports = {
       else if (urls.pathname === '/begin'){
         controller.begin(req,res);
       }
+      else if (urls.pathname === '/upload'){
+        controller.upload(req,res);
+      }
       else {
         controller.other(req,res);
       }
