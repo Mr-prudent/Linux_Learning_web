@@ -4,7 +4,7 @@ const controller = require('./controller');
 module.exports = {
   start:function (server) {
     server.on('request',(req,res)=>{
-      var urls = url.parse(req.url,true);
+      let urls = url.parse(req.url,true);
       if (urls.pathname === '/'){
         controller.index(req,res);
       }
@@ -34,6 +34,9 @@ module.exports = {
       }
       else if (urls.pathname === '/upload'){
         controller.upload(req,res);
+      }
+      else if (urls.pathname === '/msg_add'){
+        controller.msg_add(req,res);
       }
       else {
         controller.other(req,res);

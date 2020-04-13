@@ -83,10 +83,40 @@
     <form action="http://127.0.0.1:8080/upload" class="dropzone" id="dropz"></form>
   </div>
   <div class="msg_check_content content">
-    <h2>通知查看</h2>
+    <div class="message clearfloat" style="display: block">
+      <div class="wrap clearfloat">
+        <div class="message_box clearfloat" id="mes">
+          <ul class="message_list clearfloat">
+            <li class="message_row clearfloat" >
+              <div>
+                <h4><a href="">第一周作业</a></h4>
+                <p>发布时间：2020-03-28 15:51:53</p>
+                <p>发送作者：Wang</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="msg_up_content content">
-    <h2>通知发布</h2>
+    <div class="msg_list">
+      <form action="http://127.0.0.1:8080/msg_add" method="post" enctype="multipart/form-data" id="msg_form">
+        <div class="title_input">
+          <span>标题：</span>
+          <input type="text" id="msg_title_text" name="msg_title">
+          <input id="teacher_hide" type="text" name="teacher_name" value="{{data.name}}">
+        </div>
+        <div class="content_input">
+          <span>内容：</span>
+          <br>
+          <textarea name="msg_content" id="content_textarea" cols="80" rows="12"></textarea>
+        </div>
+        <button id="msg_submit">
+          提交
+        </button>
+      </form>
+    </div>
   </div>
   <div class="paper_check_content content">
     <h2>题库修改</h2>
@@ -99,7 +129,31 @@
   </div>
 
 </body>
+<script>
+  $('#msg_submit').click(function (e) {
+    e.preventDefault();
+    let title = $('#msg_title_text').val();
+    let content = $('#content_textarea').val();
+    if (!title||!content){
+      alert('标题或内容输入为空，请重新输入！');
+    }else {
+      $.ajax({
+        type: 'POST',
+        url : 'http://127.0.0.1:8080/msg_add',
+        data: $('#msg_form').serialize(),
+        success: function (data) {
+          if (data === 'yes'){
+            $('#msg_title_text').val('');
+            $('#content_textarea').val('');
+            $('#msg_check').click();
+            alert('通知添加成功');
+          }
+        }
+      })
+    }
 
+  });
+</script>
 <script>
   $('#calendar').datepicker({
     inline: true,
@@ -165,7 +219,7 @@
       $(page).fadeIn(350);
     })
   });
-  $('#msg_check,#msg_check_fast').click(function () {
+  $('#msg_check,#msg_check_fast,#back').live('click',function () {
     new Promise(resolve => {
       $(page).fadeOut(350);
       setTimeout(function () {
@@ -174,8 +228,48 @@
     }).then(()=>{
       page = '.msg_check_content';
       $(page).fadeIn(350);
-    })
+    }).then(()=>{
+      $.get('http://127.0.0.1:8080/message',function (message_data) {
+        let message_json = JSON.parse(message_data);
+        // $('.message_list').fadeOut();
+        $('.message_list').empty();
+        for (let i=0;i<message_json.length;i++){
+          $('.message_list').append(`<li class="message_row clearfloat"><div><h4><a>${message_json[i].title}&nbsp;&nbsp;&nbsp;</a></h4><p>发送时间：${message_json[i].add_date}</p><p>发送作者：${message_json[i].teacher_name}</p><p class="hide">内容：${message_json[i].content}</p><div class="hide" id="back">返回</div></div></li>`);
+        }
+      });
+    });
   });
+  $('.message_row h4').live('click',function () {
+    $('.message_row h4').parent().css('display','none');
+    $(this).parent().css('display','block');
+    // $(this).parent().slideDown();
+    //  let t2 = $(this);
+    //  let t = $(this).parent()[0];
+    // $('.message_row h4').parent().each(function () {
+    //     if (this != t){
+    //         $(this).fadeOut(350);
+    //     }else {
+    //         setTimeout(function () {
+    //             console.log(t);
+    //             $(t).css({
+    //                 'width':'530px',
+    //                 'height':'300px',
+    //                 'margin-left':'100px'
+    //             });
+    //             t2.nextAll().removeClass('hide');
+    //         },400);
+    //
+    //     }
+    // });
+    $(this).parent().css({
+      'width':'530px',
+      'height':'300px',
+      'margin-left':'100px',
+      'margin-top':'50px'
+    });
+
+    $(this).nextAll().removeClass('hide');
+  })
   $('#msg_up,#msg_up_fast').click(function () {
     new Promise(resolve => {
       $(page).fadeOut(350);
@@ -185,6 +279,8 @@
     }).then(()=>{
       page = '.msg_up_content';
       $(page).fadeIn(350);
+    }).then(()=>{
+
     })
   });
   $('#paper_check,#paper_check_fast').click(function () {

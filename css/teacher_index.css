@@ -188,3 +188,72 @@ ul{
   border-radius: 10px;
   padding-top: 50px;
 }
+.msg_list{
+  width: 800px;
+  height: 500px;
+  background: white;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.msg_list span{
+  font-size: 14px;
+  margin-right: 25px;
+}
+.msg_list .title_input{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  line-height: 40px;
+  margin-top: 20px;
+}
+.msg_list .title_input input{
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 300px;
+}
+.msg_list .title_input input:focus{
+  outline: 0;
+  border-color: #777;
+}
+.msg_list .content_input{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.msg_list .content_input textarea{
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 300px;
+  resize: none;
+}
+.msg_list .content_input textarea:focus{
+  outline: 0;
+  border-color: #777;
+}
+.msg_list button{
+  background-color: #30336b;
+  border: 2px solid #30336b;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  margin: 20px auto;
+  width: 100px;
+  cursor: pointer;
+  outline: none;
+}
+.msg_list button:hover{
+  color: #eeeeee;
+}
+#teacher_hide{
+  display: none;
+}

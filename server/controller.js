@@ -283,9 +283,7 @@ module.exports = {
         } else {
           console.log('err');
         }
-      })
-    } else if (req.method == 'POST') {
-
+      });
     }
   },
   vedio: (req, res) => {
@@ -404,8 +402,53 @@ module.exports = {
       });
       res.end();
     });
+  },
+  msg_add: (req,res)=>{
+    let form = new formidable.IncomingForm();
+    form.parse(req,function (err,field,file) {
+      if (err){
+        console.log(err);
+      }else {
+        let title = field.msg_title;
+        let content = field.msg_content;
+        let teacher = field.teacher_name;
+        let date = moment().format('YYYY-MM-DD HH:mm:ss');
+        const con = mysql.createConnection({
+          host: 'localhost',
+          user: 'root',
+          password: '123456',
+          database: 'web'
+        });
+        con.connect((err) => {
+          if (err) {
+            console.log('err');
+          }
+          let selectId = 'select id from message order by id DESC limit 1';
+          con.query(selectId, (err, result, field) => {
+            if (!err) {
+              let id = parseInt(result[0].id) + 1;
+              let addSql = `INSERT INTO message(id,teacher_name,content,add_date,title) VALUES('${id}','${teacher}','${content}','${date}','${title}');`;
+              con.query(addSql,
+                  (err, result, field) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      console.log('通知添加成功');
+                    }
+                  });
+              con.end();
+            } else {
+              console.log('err');
+            }
+          });
+          res.end('yes');
+        });
+      }
+    })
   }
 };
+
+
 
 
 

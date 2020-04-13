@@ -364,7 +364,7 @@
       // $('.message_list').fadeOut();
       $('.message_list').empty();
       for (let i=0;i<message_json.length;i++){
-        $('.message_list').append(`<li class="message_row clearfloat"><div><h4><a>${message_json[i].title}</a></h4><p>发送时间：${message_json[i].add_date}</p><p>发送作者：${message_json[i].teacher_name}</p><p class="hide">内容：${message_json[i].content}</p><div class="hide" id="back">返回</div></div></li>`);
+        $('.message_list').append(`<li class="message_row clearfloat"><div><h4><a>${message_json[i].title}&nbsp;&nbsp;&nbsp;</a></h4><p>发送时间：${message_json[i].add_date}</p><p>发送作者：${message_json[i].teacher_name}</p><p class="hide">内容：${message_json[i].content}</p><div class="hide" id="back">返回</div></div></li>`);
       }
     });
   });
