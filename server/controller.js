@@ -445,6 +445,30 @@ module.exports = {
         });
       }
     })
+  },
+  question_edit: (req,res)=>{
+    const con = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '123456',
+      database: 'web'
+    });
+    con.connect((err) => {
+      if (err) {
+        console.log('err');
+      } else {
+        console.log('查询题库');
+      }
+    });
+    let sql = 'select * from questions';
+    con.query(sql, (err, result, field) => {
+      if (!err) {
+        res.end(JSON.stringify(result));
+        con.end();
+      } else {
+        console.log('err');
+      }
+    });
   }
 };
 

@@ -217,7 +217,7 @@ ul{
 }
 .msg_list .title_input input:focus{
   outline: 0;
-  border-color: #777;
+  border-color: #4e58a0;
 }
 .msg_list .content_input{
   display: flex;
@@ -235,7 +235,7 @@ ul{
 }
 .msg_list .content_input textarea:focus{
   outline: 0;
-  border-color: #777;
+  border-color: #4e58a0;
 }
 .msg_list button{
   background-color: #30336b;
@@ -256,4 +256,58 @@ ul{
 }
 #teacher_hide{
   display: none;
+}
+.question_list {
+  width: 900px;
+  height: 400px;
+  margin: 25px 50px;
+  padding-left: 80px;
+  position: relative;
+}
+.question_list ul{
+  list-style: none;
+}
+.question_list .question_info {
+  width: 650px;
+  height: 35px;
+  background: white;
+  border: 1px white solid;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 1s ease;
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+.question_list .question_info:hover {
+  background: #eeeeee;
+}
+.question_list ul li div{
+  float: left;
+  font-size: 14px;
+  line-height: 35px;
+  margin: 0 20px;
+}
+.question_list ul li div:nth-child(1) {
+  width: 60px;
+}
+.question_list ul li div:nth-child(2) {
+  width: 120px;
+}
+.question_list ul li div:nth-child(3) {
+  width: 250px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.page_list {
+  position: absolute;
+  top: 450px;
+  left: 165px;
+}
+.question_info {
+  display: none;
+  text-indent: 5px;
+}
+.question_list .c1 {
+  display: block;
 }
