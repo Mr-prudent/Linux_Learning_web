@@ -41,6 +41,9 @@ module.exports = {
       else if (urls.pathname === '/question_edit'){
         controller.question_edit(req,res);
       }
+      else if (urls.pathname === '/question_add'){
+        controller.question_add(req,res);
+      }
       else {
         controller.other(req,res);
       }

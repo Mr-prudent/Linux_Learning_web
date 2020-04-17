@@ -138,6 +138,7 @@
         <div id="pager" class="pager clearfix">
         </div>
       </div>
+      <button class="question_add">添加</button>
       </div>
   </div>
   <div class="paper_point_content content">
@@ -146,7 +147,99 @@
   <div class="paper_publish_content content">
     <h2>发布试卷</h2>
   </div>
+  <div class="question_change_content content">
+    <div class="question_form">
+      <form id="question_add_form" action="http://127.0.0.1:8080/question_add" method="post" enctype="multipart/form-data">
+        <div class="question_option">
+          <span>请选择题目类型：</span>
+          <select id="question_select" name="question_sel">
+            <option id="single" value="single" selected="selected">单选题</option>
+            <option id="multi" value="multi">多选题</option>
+            <option id="tf" value="tf">判断题</option>
+            <option id="fill" value="fill">填空题</option>
+          </select>
+        </div>
+        <div class="question_c">
+          <div class="single sel">
+            <span style="font-size: 14px">题目：</span>
+            <br>
+            <textarea name="single_content" id="single_content_text" cols="30" rows="5"></textarea>
+            <br>
+            <span style="font-size: 14px">选项：</span>
+              <select id="single_select">
+                <option id="a" value="a" selected="selected">A</option>
+                <option id="b" value="b">B</option>
+                <option id="c" value="c">C</option>
+                <option id="d" value="d">D</option>
+              </select>
+            <br>
+            <div class="aa sel ss">
+              <textarea name="content_a" id="aaa" cols="30" rows="5"></textarea>
+            </div>
+            <div class="bb sel ss">
+              <textarea name="content_b" id="bbb" cols="30" rows="5"></textarea>
+            </div>
+            <div class="cc sel ss">
+              <textarea name="content_c" id="ccc" cols="30" rows="5"></textarea>
+            </div>
+            <div class="dd sel ss">
+              <textarea name="content_d" id="ddd" cols="30" rows="5"></textarea>
+            </div>
+            <span style="font-size: 14px">答案：</span>
+            <br>
+            <div class="answer_option">
+              <label><input name="single_answer" type="radio" value="a" />&nbsp;&nbsp;A</label>
+              <label><input name="single_answer" type="radio" value="b" />&nbsp;&nbsp;B</label>
+              <label><input name="single_answer" type="radio" value="c" />&nbsp;&nbsp;C</label>
+              <label><input name="single_answer" type="radio" value="d" />&nbsp;&nbsp;D</label>
+            </div>
 
+          </div>
+          <div class="multi sel">
+            <span style="font-size: 14px">题目：</span>
+            <br>
+            <textarea name="multi_content" id="multi_content_text" cols="30" rows="5"></textarea>
+            <br>
+            <span style="font-size: 14px">选项：</span>
+            <select id="multi_select">
+              <option value="a" selected="selected">A</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+              <option value="d">D</option>
+            </select>
+            <br>
+            <div class="aa sel ss">
+              <textarea name="content_a"  cols="30" rows="5"></textarea>
+            </div>
+            <div class="bb sel ss">
+              <textarea name="content_b" cols="30" rows="5"></textarea>
+            </div>
+            <div class="cc sel ss">
+              <textarea name="content_c"  cols="30" rows="5"></textarea>
+            </div>
+            <div class="dd sel ss">
+              <textarea name="content_d"  cols="30" rows="5"></textarea>
+            </div>
+            <span style="font-size: 14px">答案：</span>
+            <br>
+            <div class="answer_option">
+              <label><input name="multi_answer" type="radio" value="a" />&nbsp;&nbsp;A</label>
+              <label><input name="multi_answer" type="radio" value="b" />&nbsp;&nbsp;B</label>
+              <label><input name="multi_answer" type="radio" value="c" />&nbsp;&nbsp;C</label>
+              <label><input name="multi_answer" type="radio" value="d" />&nbsp;&nbsp;D</label>
+            </div>
+          </div>
+          <div class="tf sel">
+            <p>判断题</p>
+          </div>
+          <div class="fill sel">
+            <p>填空题</p>
+          </div>
+        </div>
+        <button id="question_submit">提交</button>
+      </form>
+    </div>
+  </div>
 </body>
 
 <script src="../js/jquery.z-pager.js"></script>
@@ -174,7 +267,7 @@
     let title = $('#msg_title_text').val();
     let content = $('#content_textarea').val();
     if (!title||!content){
-      alert('标题或内容输入为空，请重新输入！');
+      alert('题目或标题为空，请重新输入！');
     }else {
       $.ajax({
         type: 'POST',
@@ -416,5 +509,97 @@
     dictRemoveLinks: "删除",
     dictCancelUpload: "取消",
   };
+</script>
+<script>
+  $('.question_c .single').removeClass('sel');
+  $('.single .aa').removeClass('sel');
+  $('.multi .aa').removeClass('sel');
+  $('.question_add').live('click',function () {
+    new Promise(resolve => {
+      $(page).fadeOut(350);
+      setTimeout(function () {
+        resolve();
+      },400);
+    }).then(()=>{
+      page = '.question_change_content';
+      $(page).fadeIn(350);
+  })
+  });
+  $('#question_select').change(function () {
+    //获取选中的元素
+    let selected = $(this).children('option:selected').val();
+    if (selected === 'single') {
+      $('.question_c').children().addClass('sel');
+      $('.question_c .single').removeClass('sel');
+    }else if (selected === 'multi') {
+      $('.question_c').children().addClass('sel');
+      $('.question_c .multi').removeClass('sel');
+    }else if (selected === 'tf') {
+      $('.question_c').children().addClass('sel');
+      $('.question_c .tf').removeClass('sel');
+    }else if (selected === 'fill') {
+      $('.question_c').children().addClass('sel');
+      $('.question_c .fill').removeClass('sel');
+    }
+  });
+  $('#single_select').change(function () {
+    //获取选中的元素
+    let selected = $(this).children('option:selected').val();
+    if (selected === 'a') {
+      $('.single').children('.ss').addClass('sel');
+      $('.single .aa').removeClass('sel');
+    }else if (selected === 'b') {
+      $('.single').children('.ss').addClass('sel');
+      $('.single .bb').removeClass('sel');
+    }else if (selected === 'c') {
+      $('.single').children('.ss').addClass('sel');
+      $('.single .cc').removeClass('sel');
+    }else if (selected === 'd') {
+      $('.single').children('.ss').addClass('sel');
+      $('.single .dd').removeClass('sel');
+    }
+  });
+  $('#multi_select').change(function () {
+    //获取选中的元素
+    let selected = $(this).children('option:selected').val();
+    if (selected === 'a') {
+      $('.multi').children('.ss').addClass('sel');
+      $('.multi .aa').removeClass('sel');
+    }else if (selected === 'b') {
+      $('.multi').children('.ss').addClass('sel');
+      $('.multi .bb').removeClass('sel');
+    }else if (selected === 'c') {
+      $('.multi').children('.ss').addClass('sel');
+      $('.multi .cc').removeClass('sel');
+    }else if (selected === 'd') {
+      $('.multi').children('.ss').addClass('sel');
+      $('.multi .dd').removeClass('sel');
+    }
+  });
+  $('#question_submit').click(function (e) {
+    e.preventDefault();
+    // let title = $('#single_content_text').val();
+    let title = '1';
+    if (!title){
+      alert('题目为空，请重新输入！');
+    }else {
+      $.ajax({
+        type: 'POST',
+        url : 'http://127.0.0.1:8080/question_add',
+        data: $('#question_add_form').serialize(),
+        success: function (data) {
+          alert(data)
+        }
+      })
+    }
+  });
+  $('textarea').change(function () {
+      let content = $(this).val();
+      if (content) {
+        $(this).css('border-color','#4e58a0');
+      }else {
+        $(this).css('border-color','#f0f0f0');
+      }
+  });
 </script>
 </html>

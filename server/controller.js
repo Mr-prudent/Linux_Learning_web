@@ -469,6 +469,16 @@ module.exports = {
         console.log('err');
       }
     });
+  },
+  question_add: (req,res)=>{
+    let form = new formidable.IncomingForm();
+    form.parse(req,function (err,field,file) {
+      if (err){
+        console.log(err);
+      }else {
+        console.log(field);
+      }
+    })
   }
 };
 
