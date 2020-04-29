@@ -287,7 +287,7 @@
 	})
 
 	$.fn.zPager.defaults = {
-		totalData: 39, //数据总条数
+		totalData: 50, //数据总条数
 		pageData: 8, //每页数据条数
 		pageCount: 0, //总页数
 		current: 1, //当前页码数

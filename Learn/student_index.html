@@ -29,7 +29,7 @@
         <li><a href="#" id="learning_start">课程学习</a></li>
         <li><a href="#" id="download">资源下载</a></li>
         <li><a href="#" id="message">消息查看</a></li>
-        <li><a href="#">在线考试</a></li>
+        <li><a href="/test?name={{data.name}}" id="test">在线考试</a></li>
       </ul>
       <span>同学</span>
       <span class="data_name">{{data.name}}</span>
@@ -403,7 +403,7 @@
     });
 
     $(this).nextAll().removeClass('hide');
-  })
+  });
 </script>
 </body>
 </html>

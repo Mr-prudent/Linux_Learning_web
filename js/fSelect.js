@@ -7,9 +7,9 @@
         }
         else {
             var settings = $.extend({
-                placeholder: 'Select some options',
+                placeholder: '请选择需要的章节',
                 numDisplayed: 3,
-                overflowText: '{n} selected',
+                overflowText: '{n} 已选择',
                 searchText: 'Search',
                 showSearch: true
             }, options);

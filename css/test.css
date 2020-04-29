@@ -1,0 +1,140 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearfloat{zoom:1}
+ul{
+  list-style: none;
+}
+.hide{
+  display: none;
+}
+.header{
+  width: 100%;
+  height: 80px;
+  background: #4e58a0;
+  position: relative;
+}
+.header h3{
+  color: white;
+  line-height: 80px;
+  padding-left: 80px;
+  display: inline-block;
+  position: relative;
+}
+.header span i{
+  display: inline-block;
+  font-size: 30px;
+  position: absolute;
+  top: 25px;
+}
+.paper_content {
+  width: 980px;
+  margin: 15px auto;
+  background: #eeeeee;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-radius: 10px;
+}
+.time {
+  width: 100px;
+  height: 60px;
+  background: #4e58a0;
+  position: fixed;
+  top: 95px;
+  text-align: center;
+  color: #eeeeee;
+  left: 20px;
+  border-radius: 10px;
+}
+.time .ys2 {
+  font-size: 12px;
+  color: tomato;
+  margin-top: 3px;
+}
+.time p {
+  font-size: 12px;
+  display: block;
+  width: 80px;
+  border-bottom: 1px solid #eeeeee;
+  margin-left: 10px;
+  margin-top: 8px;
+  padding-bottom: 3px;
+}
+.test_name {
+  margin: 0 auto;
+  width: 100px;
+}
+.test_name h2 {
+  font-size: 20px;
+  color: #30336b;
+}
+.explain {
+  margin: 10px auto;
+  text-align: center;
+  width: 800px;
+  border-bottom: #8a8a8a 1px dashed;
+  padding-bottom: 10px;
+}
+.explain p {
+  font-size: 14px;
+}
+.questons {
+  width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+}
+.questons .test_quesion {
+  padding: 0 20px;
+  font-size: 14px;
+  position: relative;
+}
+.questons .test_quesion>div::after {
+  content: '';
+  display: block;
+  width: 750px;
+  margin-left: 10px;
+  border-bottom: 1px solid #8a8a8a;
+  padding-top: 10px;
+}
+.questons .test_quesion>div {
+  padding-top: 20px;
+}
+.questons .test_quesion p {
+  margin-bottom: 10px;
+  width: 700px;
+  text-indent: -1.5em;
+  margin-left: 1.5em;
+}
+.questons .test_quesion label {
+  display: block;
+  height: 50px;
+  margin-left: 50px;
+  line-height: 50px;
+  position: relative;
+}
+.questons .test_quesion label span:nth-of-type(2) {
+  margin-right: 10px;
+  color: #30336b;
+  font-weight: bold;
+}
+/*--------------------------------------*/
+.radio1{
+  display: none;
+}
+.radio1[type=radio]+span{
+	display: inline-block;
+	border-radius: 10px;
+	width: 10px;
+	height: 10px;
+	border: 3px solid #f0f0f0;
+	color: #0D1529;
+  transition: all 0.5s ease;
+  vertical-align: -5%;
+}
+.radio1[type=radio]:checked+span {
+	background-color: #30336b;
+}
+

@@ -477,10 +477,161 @@ module.exports = {
         console.log(err);
       }else {
         console.log(field);
-      }
+        const questionClass = field.question_sel;
+        let question = {}
+        if (questionClass === 'single'){
+          question = {
+            single_content: field.single_content,
+            content_a: field.content_a[0],
+            content_b: field.content_b[0],
+            content_c: field.content_c[0],
+            content_d: field.content_d[0],
+            single_answer: field.single_answer,
+            scores: 2,
+            type: 'single'
+          }
+        }else if (questionClass === 'tf') {
+          question = {
+            single_content: field.tf_content,
+            content_a: '',
+            content_b: '',
+            content_c: '',
+            content_d: '',
+            single_answer: field.tf_answer,
+            scores: 1,
+            type: 'tf'
+          }
+        }else if (questionClass === 'multi') {
+          let multiStr = field.multi_answer.join('');
+          question = {
+            single_content: field.multi_content,
+            content_a: field.content_a[1],
+            content_b: field.content_b[1],
+            content_c: field.content_c[1],
+            content_d: field.content_d[1],
+            single_answer: multiStr,
+            scores: 2,
+            type: 'multi'
+          }
+        }else if (questionClass === 'fill') {
+          question = {
+            single_content: field.fill_content,
+            content_a: '',
+            content_b: '',
+            content_c: '',
+            content_d: '',
+            single_answer: field.fill_answer,
+            scores: 2,
+            type: 'fill'
+          }
+        }
+          const con = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '123456',
+            database: 'web'
+          });
+          con.connect((err) => {
+            if (err) {
+              console.log('err');
+            }
+            let selectId = 'select id from questions order by id DESC limit 1';
+            con.query(selectId, (err, result, field) => {
+              if (!err) {
+                let id = parseInt(result[0].id) + 1;
+                let addSql = `INSERT INTO questions(id,scores,type,question,option_a,option_b,option_c,option_d,answer) VALUES('${id}','${question.scores}','${question.type}','${question.single_content}','${question.content_a}','${question.content_b}','${question.content_c}','${question.content_d}','${question.single_answer}');`;
+                con.query(addSql,
+                    (err, result, field) => {
+                      if (err) {
+                        console.log(err);
+                      } else {
+                        console.log('题目添加成功');
+                      }
+                    });
+                con.end();
+              } else {
+                console.log('err');
+              }
+            });
+            res.end('yes');
+          });
+        }
     })
-  }
+  },
+  question_delete: (req,res) => {
+    let id = '';
+    req.on('data', function (post_data) {
+      id += post_data;
+    });
+    req.on('end',function () {
+      const con = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '123456',
+        database: 'web'
+      });
+      con.connect((err) => {
+        if (err) {
+          console.log('err');
+        }
+      });
+      let sql = `DELETE from questions where id = '${id}'`;
+      con.query(sql, (err, result, field) => {
+        if (!err) {
+          con.end();
+          res.end('yes');
+        } else {
+          console.log('err');
+        }
+      });
+    })
+  },
+  test: (req,res) => {
+    const arg = url.parse(req.url).query;
+    const params = queryString.parse(arg);
+
+    const paper = {
+      name: params.name,
+      testName: '阶段测试',
+    };
+    const con = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '123456',
+      database: 'web'
+    });
+    con.connect((err) => {
+      if (err) {
+        console.log('err');
+      }
+    });
+    var sql = `select * from testpaper order by id desc limit 1`;
+    con.query(sql, (err, result, field) => {
+      if (!err) {
+        const questionList = result[0].questions.split(',');
+        const testName = result[0].testName;
+        let questionSql = `select * from questions where id in (${questionList})`;
+        con.query(questionSql, (err, result, field) => {
+          let paper = {
+            name: testName,
+          };
+          paper.questions = result;
+          console.log();
+          
+          res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+          const htmls = template('Learn/test.html',{data: paper});
+          res.end(htmls);
+          con.end();
+
+        });
+      } else {
+        console.log('err');
+      }
+    });
+
+  },
 };
+
 
 
 

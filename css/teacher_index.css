@@ -282,6 +282,9 @@ ul{
 .question_list .question_info:hover {
   background: #eeeeee;
 }
+.question_list .question_info:hover .icon-shanchu {
+  display: inline-block;
+}
 .question_list ul li div{
   float: left;
   font-size: 14px;
@@ -308,6 +311,7 @@ ul{
 .question_info {
   display: none;
   text-indent: 5px;
+  position: relative;
 }
 .question_list .c1 {
   display: block;
@@ -398,4 +402,70 @@ select {
 }
 select:focus {
   border-color: #4e58a0;
+}
+
+.publish_container {
+  height: 500px;
+  width: 800px;
+  background-color: #ffffff;
+  margin: 25px auto;
+  border-radius: 10px;
+  position: relative;
+}
+.publish_container .paper_name {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 180px;
+}
+.publish_container .paper_name:focus {
+  outline: 0;
+  border-color: #4e58a0;
+}
+.publish_container button{
+  width: 60px;
+  height: 40px;
+  font-size: 14px;
+  background: #4e58a0;
+  border: none;
+  border-radius: 5px;
+  color: #eeeeee;
+  position: absolute;
+  cursor: pointer;
+  bottom: 90px;
+  outline: none;
+}
+.publish_container .publish {
+  left: 320px;
+  width: 130px;
+
+}
+.publish_container .options span {
+  font-size: 14px;
+}
+.paper {
+  width: 700px;
+  height: 430px;
+  margin: 10px auto;
+  padding-top: 20px;
+}
+.publish_container .options{
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  padding-left: 180px;
+  padding-top: 100px;
+}
+.publish_container .options .select {
+  position: absolute;
+  top: 95px;
+  left: 282px;
+}
+.icon-shanchu {
+  position: absolute;
+  top: 10px;
+  color: red;
+  display: none;
 }

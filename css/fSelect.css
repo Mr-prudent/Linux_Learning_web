@@ -3,7 +3,8 @@
     display: inline-block;
     width: 200px;
     font-size: 12px;
-    line-height: 1;
+    line-height: 30px;
+    border-radius: 5px;
 }
 
 .fs-label-wrap {

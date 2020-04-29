@@ -1,10 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>在线考试</title>
+  <link rel="stylesheet" href="../css/test.css">
 </head>
+
 <body>
-$END$
+  <header>
+    <div class="header">
+      <div class="wrap">
+        <span><i class="iconfont icon-ts-tubiao_linux"></i></span>
+        <h3>Linux在线学习平台</h3>
+      </div>
+    </div>
+  </header>
+  <div class="time">
+    <p>剩余作答时间</p>
+    <div class="container timeBar ys2" data="5400"></div>
+  </div>
+  <div class="paper_content">
+    <div class="test_name">
+      <h2>{{data.name}}</h2>
+    </div>
+    <div class="explain">
+      <p>本套试题共30道题，共100分，考试时间为90分钟。</p>
+    </div>
+    <div class="questons">
+      <form action="#">
+        <div class="test_quesion">
+          {{each data.questions value index}}
+          {{if value.type=='single'}}
+          <div class="q_single">
+            <p><span>{{index+1}}.&nbsp;&nbsp;</span>{{value.question}}</p>
+            <label><input class="radio1" type="radio" name="{{index+1}}_answer" value="a">
+            <span></span>
+            <span>A.</span>
+            <span>{{value.option_a}}</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>B.</span>
+            <span>{{value.option_b}}</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>C.</span>
+            <span>{{value.option_c}}</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>D.</span>
+            <span>{{value.option_d}}</span>
+          </label>
+          </div>
+          {{else if value.type=='tf'}}
+          <div>有一个判断题</div>
+          {{/if}}
+          {{/each}}
+          <div class="q1">
+            <p><span>1.&nbsp;&nbsp;</span>下列文件中，包含了主机名到IP地址的映射关系的文件是： ( )</p>
+            <label><input class="radio1" type="radio" name="1_answer" value="a">
+            <span></span>
+            <span>A.</span>
+            <span>/etc/HOSTNAME</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>B.</span>
+            <span>/etc/hosts</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>C.</span>
+            <span>/etc/resolv.conf</span>
+          </label>
+            <br>
+            <label><input class="radio1" type="radio" name="1_answer" value="b">
+            <span></span>
+            <span>D.</span>
+            <span>./etc/networks</span>
+          </label>
+          </div>
+         
+        </div>
+      </form>
+    </div>
+
+    <!--    <h2>{{data.name}}</h2>-->
+  </div>
+
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/countdown.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $(".timeBar").each(function() {
+        $(this).countdownsync({
+          dayTag: "",
+          hourTag: "<label class='tt hh dib vam'>00</label><span>时</span>",
+          minTag: "<label class='tt mm dib vam'>00</label><span>分</span>",
+          secTag: "<label class='tt ss dib vam'>00</label><span>秒</span>",
+          dayClass: ".dd",
+          hourClass: ".hh",
+          minClass: ".mm",
+          secClass: ".ss",
+          isDefault: false,
+          showTemp: 1
+        }, function() {
+          // 倒计时结束后出发的回调函数
+          alert('考试结束，请立即交卷!');
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>教师首页</title>
+  <link rel="stylesheet" href="../css/fSelect.css">
   <link rel="stylesheet" href="../font_index/iconfont.css">
   <link rel="shortcut icon" href="./image/favicon.ico" />
   <script src="../js/jquery.min.js"></script>
@@ -14,6 +15,8 @@
   <link rel="stylesheet" href="../css/basic.css">
   <script src="../js/dropzone.min.js"></script>
   <link rel="stylesheet" href="../css/page.css">
+
+
 
 </head>
 <body>
@@ -43,7 +46,7 @@
     </div>
     <a class="title">试卷管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont icon-youjiantou"></i></a>
     <div class="option_list">
-      <a class="option" id="paper_check"><i class="iconfont icon-shijuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;题库修改 </a>
+      <a class="option" id="paper_check"><i class="iconfont icon-shijuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;题库添加 </a>
       <a class="option" id="paper_point"><i class="iconfont icon-tianjiashijuan-"></i>&nbsp;&nbsp;&nbsp;&nbsp;试卷批改 </a>
       <a class="option" id="paper_publish"><i class="iconfont icon-shangchuan"></i>&nbsp;&nbsp;&nbsp;&nbsp;发布试卷 </a>
     </div>
@@ -59,7 +62,7 @@
           <li id="paper_publish_fast">发布试卷</li>
           <li id="file_up_fast">资源上传</li>
           <li id="paper_point_fast">批改试卷</li>
-          <li id="paper_check_fast">题库修改</li>
+          <li id="paper_check_fast">题库添加</li>
         </ul>
       </div>
       <div id="calendar"></div>
@@ -144,8 +147,56 @@
   <div class="paper_point_content content">
     <h2>试卷批改</h2>
   </div>
-  <div class="paper_publish_content content">
-    <h2>发布试卷</h2>
+  <div class="paper_publish_content content clearfloat">
+    <div class="publish_container clearfloat">
+      <div class="paper">
+        <div class="options">
+          <span>请选择章节： </span>
+          <div class="select">
+            <select class="demo" multiple="multiple">
+              <optgroup label="第一章">
+                <option value="cp">Linux系统内存管理</option>
+                <option value="cs">系统调用</option>
+                <option value="oc">Linux操作系统</option>
+              </optgroup>
+              <optgroup label="第二章">
+                <option value="js">标准C的I/O和FILE</option>
+                <option value="php">标准的I/O缓存</option>
+                <option value="asp">dup函数</option>
+                <option value="jsp">I/O处理</option>
+              </optgroup>
+              <optgroup label="第三章">
+                <option value="js">进程的概念</option>
+                <option value="php">进程的启动和终止</option>
+                <option value="asp">进程的创建和分类</option>
+                <option value="jsp">wait函数</option>
+              </optgroup>
+              <optgroup label="第四章">
+                <option value="js">信号的基本概念</option>
+                <option value="php">signal函数</option>
+                <option value="asp">lseek函数</option>
+                <option value="jsp">alarm函数</option>
+              </optgroup>
+              <optgroup label="第五章">
+                <option value="js">网络和协议</option>
+                <option value="php">OSI模型与TCP/IP协议</option>
+                <option value="asp">Socket套接字</option>
+                <option value="jsp">UDP协议</option>
+              </optgroup>
+            </select>
+          </div>
+          <br>
+          <br>
+          <span>请输入试卷名： </span>
+            <input type="text" class="paper_name">
+          <br>
+          <br>
+          <span>请输入总分：&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" class="paper_name" value="100" disabled>
+        </div>
+      </div>
+      <button class="publish">生成并发布试卷</button>
+    </div>
   </div>
   <div class="question_change_content content">
     <div class="question_form">
@@ -223,17 +274,32 @@
             <span style="font-size: 14px">答案：</span>
             <br>
             <div class="answer_option">
-              <label><input name="multi_answer" type="radio" value="a" />&nbsp;&nbsp;A</label>
-              <label><input name="multi_answer" type="radio" value="b" />&nbsp;&nbsp;B</label>
-              <label><input name="multi_answer" type="radio" value="c" />&nbsp;&nbsp;C</label>
-              <label><input name="multi_answer" type="radio" value="d" />&nbsp;&nbsp;D</label>
+              <label><input name="multi_answer" type="checkbox" value="a" />&nbsp;&nbsp;A</label>
+              <label><input name="multi_answer" type="checkbox" value="b" />&nbsp;&nbsp;B</label>
+              <label><input name="multi_answer" type="checkbox" value="c" />&nbsp;&nbsp;C</label>
+              <label><input name="multi_answer" type="checkbox" value="d" />&nbsp;&nbsp;D</label>
             </div>
           </div>
           <div class="tf sel">
-            <p>判断题</p>
+            <span style="font-size: 14px">题目：</span>
+            <br>
+            <textarea name="tf_content" id="tf_content_text" cols="30" rows="5"></textarea>
+            <br>
+            <span style="font-size: 14px">答案：</span>
+            <br>
+            <div class="answer_option">
+              <label><input name="tf_answer" type="radio" value="t" />&nbsp;&nbsp;T</label>
+              <label><input name="tf_answer" type="radio" value="f" />&nbsp;&nbsp;F</label>
+            </div>
           </div>
           <div class="fill sel">
-            <p>填空题</p>
+            <span style="font-size: 14px">题目：</span>
+            <br>
+            <textarea name="fill_content" id="fill_content_text" cols="30" rows="5"></textarea>
+            <br>
+            <span style="font-size: 14px">答案：</span>
+            <br>
+            <textarea name="fill_answer" id="fill_answer_text" cols="30" rows="5"></textarea>
           </div>
         </div>
         <button id="question_submit">提交</button>
@@ -242,10 +308,17 @@
   </div>
 </body>
 
+
+<script>
+  $(function() {
+    $('.demo').fSelect();
+  });
+</script>
+<script src="../js/fSelect.js"></script>
 <script src="../js/jquery.z-pager.js"></script>
 <script type="text/javascript">
   $("#pager").zPager({
-    totalData: 39,
+    totalData: 45,
     htmlBox: $('#wraper'),
     btnShow: true,
     ajaxSetData: false
@@ -438,7 +511,7 @@
         let index = 0;
         let a = 1;
         while (index < question_length){
-          for (let i = 0;i < 8;i++){
+          for (let i = 0;i < 8;i++){ 
             if (question_list[index].type === 'single'){
               question_list[index].type = '单选题'
             }else if (question_list[index].type === 'multi'){
@@ -455,6 +528,7 @@
               <div>${question_list[index].id}</div>
               <div>${question_list[index].type}</div>
               <div>${question_list[index].question}</div>
+              <i class="iconfont icon-shanchu" id="question_delete"></i>
             </li>
           `);
             index++;
@@ -498,7 +572,18 @@
       $(page).fadeIn(350);
     })
   });
-
+  $('#question_delete').live('click',function () {
+    let r = confirm("请确认是否删除该题目");
+    if (r) {
+      let question_id = $(this).prevAll()[2].innerText;
+      $.post('http://127.0.0.1:8080/question_delete',question_id,function (data) {
+        if(data === 'yes') {
+          alert('删除成功');
+          $('#paper_check').click();
+        }
+      });
+    }
+  });
 </script>
 <script>
   Dropzone.options.dropz = {
@@ -588,7 +673,10 @@
         url : 'http://127.0.0.1:8080/question_add',
         data: $('#question_add_form').serialize(),
         success: function (data) {
-          alert(data)
+          if (data === 'yes') {
+            alert('题目添加成功');
+            $('#paper_check').click();
+          }
         }
       })
     }
