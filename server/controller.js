@@ -476,7 +476,6 @@ module.exports = {
       if (err){
         console.log(err);
       }else {
-        console.log(field);
         const questionClass = field.question_sel;
         let question = {}
         if (questionClass === 'single'){
@@ -590,10 +589,10 @@ module.exports = {
     const arg = url.parse(req.url).query;
     const params = queryString.parse(arg);
 
-    const paper = {
-      name: params.name,
-      testName: '阶段测试',
-    };
+    // const paper = {
+    //   name: params.name,
+    //   testName: '阶段测试',
+    // };
     const con = mysql.createConnection({
       host: 'localhost',
       user: 'root',
@@ -629,6 +628,29 @@ module.exports = {
       }
     });
 
+  },
+  test_submit: (req,res) => {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, field, file) {
+      const oanswer = JSON.stringify(field);
+      const con = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '123456',
+        database: 'web'
+      });
+      con.connect((err) => {
+        if (!err) {
+          let sql = `UPDATE score set oanswer = '${oanswer}' where name='hcs'`;
+          con.query(sql, (err,result,field) => {
+            if(!err) {
+              con.end();
+              res.end('yes'); 
+            }
+          })
+        }
+      })
+    });
   },
 };
 

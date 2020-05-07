@@ -32,7 +32,7 @@
         <li><a href="/test?name={{data.name}}" id="test">在线考试</a></li>
       </ul>
       <span>同学</span>
-      <span class="data_name">{{data.name}}</span>
+      <span class="data_name" id="data_name">{{data.name}}</span>
       <span>你好，</span>
     </div>
   </div>
@@ -404,6 +404,11 @@
 
     $(this).nextAll().removeClass('hide');
   });
+</script>
+<script>
+  let name = $('#data_name').text();
+  console.log(name);
+  sessionStorage.setItem("user_name", name);
 </script>
 </body>
 </html>

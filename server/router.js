@@ -50,6 +50,9 @@ module.exports = {
       else if (urls.pathname === '/test'){
         controller.test(req,res);
       }
+      else if (urls.pathname === '/test_submit'){
+        controller.test_submit(req,res);
+      }
       else {
         controller.other(req,res);
       }
