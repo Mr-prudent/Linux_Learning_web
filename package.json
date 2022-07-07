@@ -4,7 +4,7 @@
   "dependencies": {
     "art-template": "^4.13.2",
     "formidable": "^1.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mysql": "latest",
     "vue": "^2.6.11"
   }
